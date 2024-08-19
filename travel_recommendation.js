@@ -3,25 +3,28 @@ const clearBtn = document.getElementById('btnClear');
 const contactBtn = document.getElementById('SubmitContact');
 
 function searchPlace() {
-        const input = document.getElementById('destinationInput').value.toLowerCase();
-        const resultDiv = document.getElementById('result');
-        resultDiv.innerHTML = '';
-        fetch('travel_recommendation_api.json')
-          .then(response => response.json())
-          .then(data => {
-            const countries = ['country', 'countries'];
+    const input = document.getElementById('destinationInput').value.toLowerCase();
+    const resultDiv = document.getElementById('result');
+
+    resultDiv.innerHTML = '';
+
+    fetch('travel_recommendation_api.json')
+        .then(response => response.json())
+        .then(data => {
+            const countries = ['japan', 'australia', 'brazil'];
             const beaches = ['beach', 'beaches'];
             const temples = ['temple', 'temples'];
-            if (countries.includes(input.toLowerCase())) {
+
+              if (countries.includes(input.toLowerCase())) {
                 for (let i = 0; i < data.countries.length; i++) {
-                    for (let j = 0; j < data.countries[i].cities.length; j++) {
-                        resultDiv.innerHTML += `<div class="destination-card">`;
-                        resultDiv.innerHTML += `<img src="${data.countries[i].cities[j].imageUrl}" alt="">`;
-                        resultDiv.innerHTML += `<h3>${data.countries[i].cities[j].name}</h3>`;
-                        resultDiv.innerHTML += `<p>${data.countries[i].cities[j].description}</p>`;
-                        resultDiv.innerHTML += `</div>`;
-                    }
+                 for (let j = 0; j < data.countries[i].cities.length; j++) {
+                    resultDiv.innerHTML += `<div class="destination-card">`;
+                    resultDiv.innerHTML += `<img src="${data.countries[i].cities[j].imageUrl}" alt="">`;
+                    resultDiv.innerHTML += `<h3>${data.countries[i].cities[j].name}</h3>`;
+                    resultDiv.innerHTML += `<p>${data.countries[i].cities[j].description}</p>`;
+                    resultDiv.innerHTML += `</div>`;
                 }
+            }
             } else if (beaches.includes(input.toLowerCase())) {
                 for (let i = 0; i < data.beaches.length; i++) {
                     resultDiv.innerHTML += `<div class="destination-card">`;
@@ -48,7 +51,7 @@ function searchPlace() {
         });
 }
 
-searchBtn.addEventListener('click', searchDestination);
+searchBtn.addEventListener('click', searchPlace);
 
 function thankyou(){
     console.log("Contact Sent");

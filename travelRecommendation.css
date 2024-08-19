@@ -1,0 +1,44 @@
+body{
+    background-image: url(background.jpg);
+    background-size: cover;
+    color:#ffffff ;
+}
+
+nav {
+    background-color: #ffffff;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    ;
+    
+  }
+  
+  nav ul {
+    list-style-type: none;
+    color: white;
+    /* padding: 0; */
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 60px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+
+  nav img {
+    height: 30px;
+  }
+
+  nav input {
+    width: 20pc;
+  }
+
+  .container{
+    opacity: 0.9;
+  }
