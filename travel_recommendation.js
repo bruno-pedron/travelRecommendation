@@ -15,16 +15,25 @@ function searchPlace() {
             const beaches = ['beach', 'beaches'];
             const temples = ['temple', 'temples'];
 
-              if (countries.includes(input.toLowerCase())) {
-                for (let i = 0; i < data.countries.length; i++) {
-                 for (let j = 0; j < data.countries[i].cities.length; j++) {
-                    resultDiv.innerHTML += `<div class="destination-card">`;
-                    resultDiv.innerHTML += `<img src="${data.countries[i].cities[j].imageUrl}" alt="">`;
-                    resultDiv.innerHTML += `<h3>${data.countries[i].cities[j].name}</h3>`;
-                    resultDiv.innerHTML += `<p>${data.countries[i].cities[j].description}</p>`;
-                    resultDiv.innerHTML += `</div>`;
+            if (countries.includes(input.toLowerCase())) {
+                // Encontrar o país digitado
+                const country = data.countries.find(country => country.name.toLowerCase() === input.toLowerCase());
+                
+                if (country) {
+                    // Limpa o conteúdo anterior
+                    resultDiv.innerHTML = '';
+            
+                    // Itera pelas cidades do país selecionado
+                    for (let i = 0; i < country.cities.length; i++) {
+                        resultDiv.innerHTML += `<div class="destination-card">`;
+                        resultDiv.innerHTML += `<img src="${country.cities[i].imageUrl}" alt="">`;
+                        resultDiv.innerHTML += `<h3>${country.cities[i].name}</h3>`;
+                        resultDiv.innerHTML += `<p>${country.cities[i].description}</p>`;
+                        resultDiv.innerHTML += `</div>`;
+                    }
+                } else {
+                    resultDiv.innerHTML = '<p>Country not found</p>';
                 }
-            }
             } else if (beaches.includes(input.toLowerCase())) {
                 for (let i = 0; i < data.beaches.length; i++) {
                     resultDiv.innerHTML += `<div class="destination-card">`;
